@@ -1,0 +1,51 @@
+<app-barra-comandos (eventoBusca)="get($event)"></app-barra-comandos>
+<table>
+    <thead app-thead-ordenacao
+        [colunas]="colunas"
+        (ordenacaoAtualizada)="ordenar($event)"></thead>
+    <tbody>
+        <tr *ngFor="let item of registros">
+            <td>{{ item.id }}</td>
+            <td>{{ item.nomeCompleto }}</td>
+            <td>{{ item.nomeUsuario }}</td>
+            <td>{{ item.ativo ? "Sim" : "Não" }}</td>
+            <td>{{ item.papel }}</td>
+            <td>
+                <a routerLink="./form"
+                   [queryParams]="{id: item.id}"
+                   class="botao"
+                   ngbTooltip="Editar registro"><i class="bi bi-pencil-square"></i></a>
+                <a href=""
+                   class="botao excluir"
+                   (click)="delete(item.id);$event.preventDefault();"
+                   ngbTooltip="Cancelar registro"><i class="bi bi-x-square"></i></a>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="6">
+                <span *ngIf="registros.length > 0">Total de registros: {{ respostaPaginada.totalElements }}</span>
+                <span *ngIf="registros.length == 0">Nenhum registro encontrado</span>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<div id="paginacao">
+    <div>
+        <label for="tamanhoPagina">Itens por página</label>
+        <select name="tamanhoPagina"
+                id="tamanhoPagina"
+                [(ngModel)]="requisicaoPaginada.size"
+                (change)="mudarTamanhoPagina()">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+        </select>
+    </div>
+    <ngb-pagination
+        [collectionSize]="respostaPaginada.totalElements"
+        [pageSize]="respostaPaginada.size"
+        (pageChange)="mudarPagina($event)"
+        [boundaryLinks]="true"></ngb-pagination>
+</div>

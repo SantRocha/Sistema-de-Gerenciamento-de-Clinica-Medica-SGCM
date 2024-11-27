@@ -1,0 +1,51 @@
+<form (submit)="save()" [formGroup]="formConvenio">
+
+    <div class="grid">
+
+       <label for="nome">Nome</label>
+       <input type="text" name="nome" id="nome" required
+              formControlName="nome" class="form-control"
+              [ngClass]="{'is-invalid': form.nome.invalid && form.nome.touched, 'is-valid': form.nome.valid && form.nome.touched}">
+       <small *ngIf="form.nome.hasError('required')">Campo obrigatório</small>
+
+       <label for="razaoSocial">Razão Social</label>
+       <input type="text" name="razaoSocial" id="razaoSocial" required
+              formControlName="razaoSocial" class="form-control"
+              [ngClass]="{'is-invalid': form.razaoSocial.invalid && form.razaoSocial.touched, 'is-valid': form.razaoSocial.valid && form.razaoSocial.touched}">
+       <small *ngIf="form.razaoSocial.hasError('required')">Campo obrigatório</small>
+
+       <label for="cnpj">CNPJ</label>
+       <input type="text" name="cnpj" id="cnpj" required
+              formControlName="cnpj" class="form-control"
+              [ngClass]="{'is-invalid': form.cnpj.invalid && form.cnpj.touched, 'is-valid': form.cnpj.valid && form.cnpj.touched}">
+       <small *ngIf="form.cnpj.hasError('required')">Campo obrigatório</small>
+
+       <label for="representante">Representante</label>
+       <input type="text" name="representante" id="representante" required
+              formControlName="representante" class="form-control"
+              [ngClass]="{'is-invalid': form.representante.invalid && form.representante.touched, 'is-valid': form.representante.valid && form.representante.touched}">
+       <small *ngIf="form.representante.hasError('required')">Campo obrigatório</small>
+
+       <label for="email">E-mail</label>
+       <input type="email" name="email" id="email" required
+              formControlName="email" class="form-control"
+              [ngClass]="{'is-invalid': form.email.invalid && form.email.touched, 'is-valid': form.email.valid && form.email.touched}">
+       <small *ngIf="form.email.hasError('required')">Campo obrigatório</small>
+       <small *ngIf="form.email.hasError('email')">Formato inválido</small>
+
+       <label for="telefone">Telefone</label>
+       <input type="text" name="telefone" id="telefone" required
+              formControlName="telefone" class="form-control"
+              [ngClass]="{'is-invalid': form.telefone.invalid && form.telefone.touched, 'is-valid': form.telefone.valid && form.telefone.touched}">
+       <small *ngIf="form.telefone.hasError('required')">Campo obrigatório</small>
+
+       <label for="ativo">Ativo</label>
+       <input type="checkbox" name="ativo" id="ativo"
+              formControlName="ativo">
+        
+    </div>
+
+    <input type="button" value="Cancelar" routerLink="../">
+    <input type="submit" value="Salvar" [disabled]="formConvenio.invalid">
+    
+</form>

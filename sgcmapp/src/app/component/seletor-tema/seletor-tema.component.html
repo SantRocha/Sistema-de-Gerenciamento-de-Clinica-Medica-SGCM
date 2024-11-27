@@ -1,0 +1,15 @@
+<!-- <label for="tema">Tema:</label>
+<select id="tema" (change)="mudarTema()" [(ngModel)]="temaSelecionado">
+    <option value="">Escolha um tema</option>
+    <option value="azul">Azul</option>
+    <option value="vermelho">Vermelho</option>
+    <option value="amarelo">Amarelo</option>
+</select> -->
+<div ngbDropdown class="d-inline-block" (openChange)="mudarTema()">
+    <button type="button" class="btn btn-light" id="tema" ngbDropdownToggle>
+        {{ temas[temaSelecionado] || 'Escolha um tema' }}
+    </button>
+    <div ngbDropdownMenu aria-labelledby="tema">
+        <button ngbDropdownItem *ngFor="let item of listaTemas()" (click)="selecionarTema(item)">{{ temas[item] }}</button>
+    </div>
+</div>

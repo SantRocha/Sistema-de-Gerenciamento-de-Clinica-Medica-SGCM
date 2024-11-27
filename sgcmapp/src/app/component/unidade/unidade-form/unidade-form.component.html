@@ -1,0 +1,22 @@
+<form (ngSubmit)="save()" [formGroup]="formUnidade">
+
+    <div class="grid">
+
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" required
+               formControlName="nome" class="form-control"
+               [ngClass]="{'is-invalid': form.nome.invalid && form.nome.touched, 'is-valid': form.nome.valid && form.nome.touched}">
+        <small *ngIf="form.nome.hasError('required')">Campo obrigatório</small>
+
+        <label for="endereco">Endereço</label>
+        <input type="text" name="endereco" id="endereco" required
+               formControlName="endereco" class="form-control"
+               [ngClass]="{'is-invalid': form.endereco.invalid && form.endereco.touched, 'is-valid': form.endereco.valid && form.endereco.touched}">
+        <small *ngIf="form.endereco.hasError('required')">Campo obrigatório</small>
+        
+    </div>
+
+    <input type="button" value="Cancelar" routerLink="../">
+    <input type="submit" value="Salvar" [disabled]="formUnidade.invalid">
+    
+</form>

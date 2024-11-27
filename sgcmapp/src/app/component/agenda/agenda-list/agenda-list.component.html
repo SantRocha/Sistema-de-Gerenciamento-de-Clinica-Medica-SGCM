@@ -1,0 +1,63 @@
+<h1>Agenda</h1>
+<app-barra-comandos (eventoBusca)="get($event)"></app-barra-comandos>
+<table>
+    <thead app-thead-ordenacao
+        [colunas]="colunas"
+        (ordenacaoAtualizada)="ordenar($event)"></thead>
+    <tbody>
+        <tr *ngFor="let item of registros">
+            <td class="fit">{{ item.data | date:'dd/MM/yyyy' }}</td>
+            <td class="fit">{{ item.hora | slice:0:5 }}</td>
+            <td>{{ item.paciente_nome }}</td>
+            <td>{{ item.profissional_nome }}</td>
+            <td>{{ item.unidade_nome }}</td>
+            <td>{{ item.convenio_nome }}</td>
+            <td>
+                <a href=""
+                   (click)="updateStatus(item.id);$event.preventDefault();"
+                   class="botao chegada"
+                   [ngClass]="{ 'inativo': item.status == 'AGENDADO' }"
+                   ngbTooltip="Informar chegada"><i class="bi bi-box-arrow-in-right"></i></a>
+                <a href=""
+                   (click)="updateStatus(item.id);$event.preventDefault();"
+                   class="botao confirmacao"
+                   [ngClass]="{ 'inativo': item.status == 'CONFIRMADO' }"
+                   ngbTooltip="Confirmar agendamento"><i class="bi bi-check-square"></i></a>
+                <a routerLink="./form"
+                   [queryParams]="{id: item.id}"
+                   class="botao"
+                   ngbTooltip="Editar agendamento"><i class="bi bi-pencil-square"></i></a>
+                <a href=""
+                   class="botao excluir"
+                   (click)="delete(item.id);$event.preventDefault();"
+                   ngbTooltip="Cancelar agendamento"><i class="bi bi-x-square"></i></a>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="7">
+                <span *ngIf="registros.length > 0">Total de registros: {{ respostaPaginada.totalElements }}</span>
+                <span *ngIf="registros.length == 0">Nenhum registro encontrado</span>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<div id="paginacao">
+    <div>
+        <label for="tamanhoPagina">Itens por página</label>
+        <select name="tamanhoPagina"
+                id="tamanhoPagina"
+                [(ngModel)]="requisicaoPaginada.size"
+                (change)="mudarTamanhoPagina()">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+        </select>
+    </div>
+    <ngb-pagination
+        [collectionSize]="respostaPaginada.totalElements"
+        [pageSize]="respostaPaginada.size"
+        (pageChange)="mudarPagina($event)"
+        [boundaryLinks]="true"></ngb-pagination>
+</div>

@@ -1,0 +1,101 @@
+<form (submit)="save()" [formGroup]="formPaciente">
+    
+    <div class="grid">
+
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" required
+               formControlName="nome"class="form-control"
+               [ngClass]="{'is-invalid': form.nome.invalid && form.nome.touched, 'is-valid': form.nome.valid && form.nome.touched}">
+        <small *ngIf="form.nome.hasError('required')">Campo obrigatório</small>
+
+        <label for="email">E-mail</label>
+        <input type="email" name="email" id="email"
+               formControlName="email"class="form-control"
+               [ngClass]="{'is-invalid': form.email.invalid && form.email.touched, 'is-valid': form.email.valid && form.email.touched}">
+        <small *ngIf="form.email.hasError('required')">Campo obrigatório</small>
+        <small *ngIf="form.email.hasError('email')">Formato inválido</small>
+
+        <label for="telefone">Telefone</label>
+        <input type="text" name="telefone" id="telefone" required
+               formControlName="telefone"class="form-control"
+               [ngClass]="{'is-invalid': form.telefone.invalid && form.telefone.touched, 'is-valid': form.telefone.valid && form.telefone.touched}">
+        <small *ngIf="form.telefone.hasError('required')">Campo obrigatório</small>
+
+        <label for="dataNascimento">Data de nascimento</label>
+        <input type="date" name="dataNascimento" id="dataNascimento" required
+               formControlName="dataNascimento"class="form-control"
+               [ngClass]="{'is-invalid': form.dataNascimento.invalid && form.dataNascimento.touched, 'is-valid': form.dataNascimento.valid && form.dataNascimento.touched}">
+        <small *ngIf="form.dataNascimento.hasError('required')">Campo obrigatório</small>
+
+        <label for="grupoSanguineo">Grupo sanguíneo</label>
+        <select name="grupoSanguineo" id="grupoSanguineo"
+                formControlName="grupoSanguineo"class="form-select">
+            <option value="A_POSITIVO">A+</option>
+            <option value="A_NEGATIVO">A-</option>
+            <option value="B_POSITIVO">B+</option>
+            <option value="B_NEGATIVO">B-</option>
+            <option value="AB_POSITIVO">AB+</option>
+            <option value="AB_NEGATIVO">AB-</option>
+            <option value="O_POSITIVO">O+</option>
+            <option value="O_NEGATIVO">O-</option>
+        </select>
+
+        <label for="sexo">Sexo</label>
+        <select name="sexo" id="sexo" required
+                formControlName="sexo"class="form-select"
+                [ngClass]="{'is-invalid': form.sexo.invalid && form.sexo.touched, 'is-valid': form.sexo.valid && form.sexo.touched}">
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+        </select>
+        <small *ngIf="form.sexo.hasError('required')">Campo obrigatório</small>
+
+        <label for="cep">CEP</label>
+        <input type="text" name="cep" id="cep"
+               formControlName="cep"class="form-control">
+
+        <label for="endereco">Endereço</label>
+        <input type="text" name="endereco" id="endereco"
+               formControlName="endereco"class="form-control">
+
+        <label for="estado">Estado</label>
+        <select name="estado" id="estado"
+                formControlName="estado"class="form-select">
+            <option value="AC">Acre</option>
+            <option value="AL">Alagoas</option>
+            <option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option>
+            <option value="BA">Bahia</option>
+            <option value="CE">Ceará</option>
+            <option value="DF">Distrito Federal</option>
+            <option value="ES">Espírito Santo</option>
+            <option value="GO">Goiás</option>
+            <option value="MA">Maranhão</option>
+            <option value="MT">Mato Grosso</option>
+            <option value="MS">Mato Grosso do Sul</option>
+            <option value="MG">Minas Gerais</option>
+            <option value="PA">Pará</option>
+            <option value="PB">Paraíba</option>
+            <option value="PR">Paraná</option>
+            <option value="PE">Pernambuco</option>
+            <option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option>
+            <option value="SC">Santa Catarina</option>
+            <option value="SP">São Paulo</option>
+            <option value="SE">Sergipe</option>
+            <option value="TO">Tocantins</option>
+        </select>
+
+        <label for="cidade">Cidade</label>
+        <input type="text" name="cidade" id="cidade"
+               formControlName="cidade"class="form-control">
+        
+    </div>
+
+    <input type="button" value="Cancelar" routerLink="../">
+    <input type="submit" value="Salvar" [disabled]="formPaciente.invalid">
+
+</form>

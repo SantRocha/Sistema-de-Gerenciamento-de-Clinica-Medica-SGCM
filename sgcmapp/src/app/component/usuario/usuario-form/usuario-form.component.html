@@ -1,0 +1,39 @@
+<form (submit)="save()" [formGroup]="formUsuario">
+
+    <div class="grid">
+
+        <label for="nomeCompleto">Nome</label>
+        <input type="text" name="nomeCompleto" id="nomeCompleto" required
+               formControlName="nomeCompleto" class="form-control"
+               [ngClass]="{'is-invalid': form.nomeCompleto.invalid && form.nomeCompleto.touched, 'is-valid': form.nomeCompleto.valid && form.nomeCompleto.touched}">
+       <small *ngIf="form.nomeCompleto.hasError('required')">Campo obrigatório</small>
+    
+        <label for="nomeUsuario">Usuário</label>
+        <input type="text" name="nomeUsuario" id="nomeUsuario" required
+               formControlName="nomeUsuario" class="form-control"
+               [ngClass]="{'is-invalid': form.nomeUsuario.invalid && form.nomeUsuario.touched, 'is-valid': form.nomeUsuario.valid && form.nomeUsuario.touched}">
+       <small *ngIf="form.nomeUsuario.hasError('required')">Campo obrigatório</small>
+    
+        <label for="senha">Senha</label>
+        <input type="password" name="senha" id="senha"
+               formControlName="senha">
+    
+        <label for="ativo">Ativo</label>
+        <input type="checkbox" name="ativo" id="ativo"
+               formControlName="ativo">
+    
+        <label for="papel">Papel</label>
+        <select name="papel" id="papel" required
+                formControlName="papel" class="form-select"
+                [ngClass]="{'is-invalid': form.papel.invalid && form.papel.touched, 'is-valid': form.papel.valid && form.papel.touched}">
+            <option value="ROLE_ATENDENTE">ATENDENTE</option>
+            <option value="ROLE_ADMIN">ADMIN</option>
+        </select>
+        <small *ngIf="form.papel.hasError('required')">Campo obrigatório</small>
+
+    </div>
+
+    <input type="button" value="Cancelar" routerLink="../">
+    <input type="submit" value="Salvar" [disabled]="formUsuario.invalid">
+    
+</form>
